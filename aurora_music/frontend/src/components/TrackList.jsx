@@ -8,8 +8,7 @@ export default function TrackList() {
   const { playTrack, currentTrack, isPlaying } = usePlayer();
 
   useEffect(() => {
-    client
-      .get("/tracks")
+    client.get("/tracks")
       .then((res) => setTracks(res.data))
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
@@ -21,6 +20,7 @@ export default function TrackList() {
     <div style={{ display: "grid", gap: "12px" }}>
       {tracks.map((t) => {
         const active = currentTrack?.id === t.id;
+
         return (
           <div
             key={t.id}
@@ -31,24 +31,22 @@ export default function TrackList() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              background: active ? "#f3f3f3" : "white",
+              background: active ? "#f0f0f0" : "#fff",
             }}
           >
             <div>
-              <div style={{ fontWeight: 600 }}>{t.title}</div>
-              <div style={{ fontSize: "0.9rem", color: "#555" }}>
-                {t.artist} • {t.album}
-              </div>
+              <strong>{t.title}</strong>
+              <div>{t.artist} — {t.album}</div>
             </div>
 
             <button
               onClick={() => playTrack(t)}
               style={{
-                padding: "6px 12px",
-                borderRadius: "8px",
-                border: "none",
                 background: "#111",
                 color: "white",
+                padding: "8px 12px",
+                borderRadius: "8px",
+                border: "none",
                 cursor: "pointer",
               }}
             >

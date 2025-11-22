@@ -4,7 +4,6 @@ const PlayerContext = createContext(null);
 
 export function PlayerProvider({ children }) {
   const audioRef = useRef(null);
-
   const [currentTrack, setCurrentTrack] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -12,7 +11,6 @@ export function PlayerProvider({ children }) {
     setCurrentTrack(track);
     setIsPlaying(true);
 
-    // Wait for React to update <audio src>, then play
     setTimeout(() => {
       if (audioRef.current) {
         audioRef.current.load();
@@ -33,15 +31,7 @@ export function PlayerProvider({ children }) {
   };
 
   return (
-    <PlayerContext.Provider
-      value={{
-        currentTrack,
-        isPlaying,
-        playTrack,
-        togglePlayPause,
-        audioRef,
-      }}
-    >
+    <PlayerContext.Provider value={{ currentTrack, isPlaying, playTrack, togglePlayPause, audioRef }}>
       {children}
     </PlayerContext.Provider>
   );
