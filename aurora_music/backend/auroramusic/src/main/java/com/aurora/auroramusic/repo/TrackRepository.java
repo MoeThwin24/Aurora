@@ -3,4 +3,4 @@ package com.aurora.auroramusic.repo;
 import com.aurora.auroramusic.model.Track;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TrackRepostiory extends JpaRepository<Track, Long>{}
+public interface TrackRepository extends JpaRepository<Track, Long>{}
